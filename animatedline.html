@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <style>
+        svg {
+            text-align: center;
+            margin-top: 40px;
+            background-color: whitesmoke;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script id="chart">
+        // data
+        const data = [{ date: "8/26/2020", value: 1 },
+        { date: "8/27/2020", value: 7 },
+        { date: "8/28/2020", value: 9 },
+        { date: "8/29/2020", value: 8 },
+        { date: "8/30/2020", value: 8 },
+        { date: "8/31/2020", value: 32 },
+        { date: "9/1/2020", value: 48 },
+        { date: "9/2/2020", value: 101 },
+        { date: "9/3/2020", value: 84 },
+        { date: "9/4/2020", value: 46 },
+        { date: "9/5/2020", value: 27 },
+        { date: "9/6/2020", value: 11 },
+        { date: "9/7/2020", value: 11 },
+        { date: "9/8/2020", value: 38 },
+        { date: "9/9/2020", value: 30 },
+        { date: "9/10/2020", value: 17 },
+        { date: "9/11/2020", value: 114 },
+        { date: "9/12/2020", value: 15 },
+        { date: "9/13/2020", value: 1 },
+        { date: "9/14/2020", value: 29 },
+        { date: "9/15/2020", value: 20 },
+        { date: "9/16/2020", value: 23 },
+        { date: "9/17/2020", value: 14 },
+        { date: "9/18/2020", value: 23 },
+        { date: "9/19/2020", value: 2 },
+        { date: "9/20/2020", value: 4 },
+        { date: "9/21/2020", value: 13 },
+        { date: "9/22/2020", value: 11 },
+        { date: "9/23/2020", value: 20 },
+        { date: "9/24/2020", value: 12 },
+        { date: "9/25/2020", value: 13 },
+        { date: "9/26/2020", value: 2 },
+        { date: "9/27/2020", value: 4 },
+        { date: "9/28/2020", value: 8 },
+        { date: "9/29/2020", value: 5 },
+        { date: "9/30/2020", value: 14 },
+        { date: "10/1/2020", value: 15 },
+        { date: "10/2/2020", value: 3 },
+        { date: "10/3/2020", value: 1 },
+        { date: "10/4/2020", value: 1 },
+        { date: "10/5/2020", value: 3 },
+        { date: "10/6/2020", value: 4 },
+        { date: "10/7/2020", value: 2 },
+        { date: "10/8/2020", value: 4 },
+        { date: "10/9/2020", value: 2 }];
+
+        // Create SVG and padding for the chart
+        const svg = d3.select("body")
+            .append("svg")
+            .attr("height", 300)
+            .attr("width", 600);
+        const margin = { top: 0, bottom: 20, left: 30, right: 20 };
+        const chart = svg.append("g").attr("transform", `translate(${margin.left},0)`);
+        const width = +svg.attr("width") - margin.left - margin.right;
+        const height = +svg.attr("height") - margin.top - margin.bottom;
+        const grp = chart
+        .append("g")
+        .attr("transform", `translate(-${margin.left},-${margin.top})`);
+
+        // Convert dates from data 
+        var parseTime = d3.timeParse("%m/%d/%Y");
+
+        data.forEach(function (d) {
+            d.date = parseTime(d.date);
+        });
+
+        // Create scales
+        const xScale = d3
+            .scaleTime()
+            .range([0, width])
+            .domain(d3.extent(data, function (d) { return d.date; }))
+            ;
+
+        const yScale = d3
+            .scaleLinear()
+            .range([height, 0])
+            .domain(d3.extent(data, function (d) { return d.value; }))
+            ;
+
+        // generate a line using D3 line()
+        const line = d3.line()
+            .x(d => xScale(d.date))
+            .y(d => yScale(d.value))
+            ;
+
+        // Add the line to chart and style
+        const path = grp
+            .append("path")
+            .attr("transform", `translate(${margin.left},0)`)
+            .data([data])
+            .attr("fill", "none")
+            .attr("stroke", "orange")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 1.5)
+            .attr("d", line);
+
+        // get total length of SVG path
+        const pathLength = path.node().getTotalLength();
+
+        // add a basic D3 transition
+        const transitionPath = d3
+            .transition()
+            .ease(d3.easeSin)
+            .duration(5000);
+
+        path
+            .attr("stroke-dashoffset", pathLength)
+            .attr("stroke-dasharray", pathLength)
+            .transition(transitionPath)
+            .attr("stroke-dashoffset", 0);
+    
+        // Add the X Axis
+        chart
+            .append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%m-%d")));
+        
+        // Add the Y Axis
+        chart
+            .append("g")
+            .attr("transform", `translate(0, 0)`)
+            .call(d3.axisLeft(yScale));
+    </script>
+</body>
+
