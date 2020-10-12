@@ -2,16 +2,12 @@
 <head>
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
-    <style>
-        svg {
-            text-align: center;
-            margin-top: 40px;
-            background-color: whitesmoke;
-            padding: 20px;
-        }
-    </style>
+    <link href="animatedline_styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
+    <header id="title">
+        <h1>New UT <span class="highlight">student</span> cases of COVID-19 per day</h1>
+    </header>
     <script id="chart">
         // data
         const data = [{ date: "8/26/2020", value: 1 },
@@ -105,10 +101,10 @@
             .attr("transform", `translate(${margin.left},0)`)
             .data([data])
             .attr("fill", "none")
-            .attr("stroke", "orange")
+            .attr("stroke", "#f5842e")
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
-            .attr("stroke-width", 1.5)
+            .attr("stroke-width", 2)
             .attr("d", line);
 
         // get total length of SVG path
@@ -138,5 +134,6 @@
             .attr("transform", `translate(0, 0)`)
             .call(d3.axisLeft(yScale));
     </script>
+    <h2>Source: UT Austin COVID-19 Dashboard</h2>
 </body>
 
