@@ -1,2 +1,2 @@
-# D3.js_Practice
-A repository where I will store files related to learning and playing around with d3.js
+# Daily_Texan_COVID-19_Visuals
+COVID-19 data visualizations for The Daily Texan Twitter created with D3.js, HTML and CSS. 
