@@ -7,7 +7,7 @@
 <body>
     <header id="title">
         <h1>New UT <span class="highlight">student</span> cases of COVID-19 per day</h1>
-        <h2>As of Oct. 23, there have been <b class="highlight">999</b> COVID-19 cases among students since classes began Aug. 26.</h2>
+        <h2>As of Oct. 30, there have been <b class="highlight">1,048</b> COVID-19 cases among students since classes began Aug. 26.</h2>
     </header>
     <script>
         // data
@@ -62,14 +62,21 @@
         { date: "10/13/2020", value: 14 },
         { date: "10/14/2020", value: 8 },
         { date: "10/15/2020", value: 6 },
-        { date: "10/16/2020", value: 10 },
+        { date: "10/16/2020", value: 11 },
         { date: "10/17/2020", value: 2 },
         { date: "10/18/2020", value: 3 },
         { date: "10/19/2020", value: 8 },
-        { date: "10/20/2020", value: 15 },
+        { date: "10/20/2020", value: 16 },
         { date: "10/21/2020", value: 6 },
         { date: "10/22/2020", value: 8 },
-        { date: "10/23/2020", value: 4 }];
+        { date: "10/23/2020", value: 6 },
+        { date: "10/24/2020", value: 2 },
+        { date: "10/25/2020", value: 1 },
+        { date: "10/26/2020", value: 6 },
+        { date: "10/27/2020", value: 13 },
+        { date: "10/28/2020", value: 2 },
+        { date: "10/29/2020", value: 12 },
+        { date: "10/30/2020", value: 7 }];
 
         // create SVG and padding for the chart
         const svg = d3.select("body")
@@ -98,20 +105,17 @@
         const xScale = d3
             .scaleTime()
             .range([0, width])
-            .domain(d3.extent(data, function (d) { return d.date; }))
-            ;
+            .domain(d3.extent(data, function (d) { return d.date; }));
 
         const yScale = d3
             .scaleLinear()
             .range([height, 0])
-            .domain(d3.extent(data, function (d) { return d.value; }))
-            ;
+            .domain(d3.extent(data, function (d) { return d.value; }));
 
         // generate a line using D3 line()
         const line = d3.line()
             .x(d => xScale(d.date))
-            .y(d => yScale(d.value))
-            ;
+            .y(d => yScale(d.value));
 
         // add the line to chart and style
         const path = grp
