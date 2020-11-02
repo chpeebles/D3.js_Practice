@@ -6,7 +6,7 @@ https://twitter.com/thedailytexan/status/1317934729916633088 &
 https://twitter.com/thedailytexan/status/1317914597135994881
 
 
-<b>Role:</b> I designed it independently.
+<b>Role:</b> I designed these charts independently.
 
 <b>What was good:</b> The styling is clean and easy to read. The animation is smooth and isn’t too fast or slow.
 
