@@ -8,7 +8,7 @@
     <header id="title">
         <h1>UT <span class="highlight">Student</span> Clinical Testing Positivity Rate</h1>
         <!-- <h2>From Oct. 11 to Oct. 16, <b class="highlight">3.7%</b> students tested positive at University Health Services and UT Health Austin.</h2> -->
-        <h2>University Health Services and UT Health Austin reported a <b class="highlight">5.4%</b> student positivity rate from Oct. 25 to Oct. 30.*</h2>
+        <h2>University Health Services and UT Health Austin reported a <b class="highlight">7.6%</b> student positivity rate from Nov. 1 to Nov. 6.*</h2>
     </header>
     <script id="chart">
         // data
@@ -72,12 +72,19 @@
         { date: "10/22/2020", value: 3.91 },
         { date: "10/23/2020", value: 5.03 },
         { date: "10/24/2020", value: 5.93 },
-        { date: "10/25/2020", value: 5.93 },
-        { date: "10/26/2020", value: 5.93 },
-        { date: "10/27/2020", value: 5.45 },
-        { date: "10/28/2020", value: 5.26 },
-        { date: "10/29/2020", value: 4.88 },
-        { date: "10/30/2020", value: 5.57 }];
+        { date: "10/25/2020", value: 5.91 },
+        { date: "10/26/2020", value: 5.91 },
+        { date: "10/27/2020", value: 5.42 },
+        { date: "10/28/2020", value: 5.23 },
+        { date: "10/29/2020", value: 4.83 },
+        { date: "10/30/2020", value: 5.51 },
+        { date: "10/31/2020", value: 5.39 },
+        { date: "11/1/2020", value: 5.39 },
+        { date: "11/2/2020", value: 5.39 },
+        { date: "11/3/2020", value: 5.97 },
+        { date: "11/4/2020", value: 5.23 },
+        { date: "11/5/2020", value: 6.25 },
+        { date: "11/6/2020", value: 6.11 }];
 
         // create SVG and padding for the chart
         const svg = d3.select("body")
@@ -156,6 +163,7 @@
             .append("g")
             .attr("transform", `translate(0, 0)`)
             .call(d3.axisLeft(yScale).tickFormat(d => d + "%"));
+            
     </script>
     <h3>*As of Oct. 19, the seven day moving average is calculated based on the total positive tests over the past seven days divided by the total number of tests conducted over the past seven days.</h3>
     <h3>Source: UT Austin COVID-19 Dashboard</h3>
